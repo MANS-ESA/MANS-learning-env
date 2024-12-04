@@ -1,0 +1,24 @@
+behaviors:
+  MoveToTarget:
+    trainer_type: ppo  # Proximal Policy Optimization
+    hyperparameters:
+      batch_size: 128  # Réduit pour des mises à jour fréquentes
+      buffer_size: 4096  # Taille réduite pour un apprentissage plus réactif
+      learning_rate: 5.0e-4  # Légèrement augmenté pour accélérer l'apprentissage
+      beta: 1.0e-3  # Augmenté pour une meilleure exploration initiale
+      epsilon: 0.3  # Augmenté pour autoriser des mises à jour plus importantes
+      lambd: 0.95  # Diminué pour favoriser des mises à jour plus immédiates
+      num_epoch: 5  # Augmenté pour exploiter davantage les données du buffer
+      learning_rate_schedule: linear  # Garde une décroissance progressive du taux d'apprentissage
+    network_settings:
+      vis_encode_type: mans_net  # Encodeur simple pour la caméra
+      normalize: true  # Active la normalisation pour stabiliser les entrées
+      hidden_units: 128  # Taille suffisante pour capturer des relations complexes
+      num_layers: 2  # Plus profond pour des relations plus complexes
+    reward_signals:
+      extrinsic:
+        strength: 1.0
+        gamma: 0.95  # Réduit pour une importance accrue des récompenses immédiates
+    max_steps: 2000000  # Limite totale d'entraînement
+    time_horizon: 64  # Horizon réduit pour des mises à jour fréquentes
+    summary_freq: 10000  # Résumés de progression réguliers

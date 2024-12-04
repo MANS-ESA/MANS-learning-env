@@ -1,0 +1,4 @@
+[submodule "MANS-ml-agents"]
+	path = MANS-ml-agents
+	url = https://github.com/MANS-ESA/MANS-ml-agents.git
+	branch = develop
